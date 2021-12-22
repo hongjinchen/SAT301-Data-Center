@@ -16,7 +16,7 @@ const PieChart =()=>{
   const getOption = ()=>{
       let option = {
     title: {
-      text: 'Referer of a Website',
+      text: 'The number of detection for a single user',
       subtext: 'Fake Data',
       left: 'center'
     },
@@ -29,15 +29,16 @@ const PieChart =()=>{
     },
     series: [
       {
-        name: 'Access From',
+        name: 'User number',
         type: 'pie',
         radius: '50%',
         data: [
-          { value: 1048, name: 'Search Engine' },
-          { value: 735, name: 'Direct' },
-          { value: 580, name: 'Email' },
-          { value: 484, name: 'Union Ads' },
-          { value: 300, name: 'Video Ads' }
+          { value: 1048, name: '1' },
+          { value: 735, name: '2' },
+          { value: 580, name: '3' },
+          { value: 484, name: '4' },
+          { value: 300, name: '5' },
+          { value: 300, name: 'over 5' }
         ],
         emphasis: {
           itemStyle: {
@@ -56,11 +57,35 @@ return(
   <ReactECharts option={getOption()} />
 )
 }
+const LineChart =()=>{
+  let option = {
+    title: {
+      text: 'Number of users per day'
+    },
+    xAxis: {
+      type: 'category',
+      data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        data: [150, 230, 224, 218, 135, 147, 260],
+        type: 'line'
+      }
+    ]
+  };
+  return(
+    <ReactECharts option={option} />
+  )
+}
+
 const Welcome = () => {
   const intl = useIntl();
   return (
     <PageContainer>
-      <Card>
+      {/* <Card>
         <Alert
           message={intl.formatMessage({
             id: 'pages.welcome.alertMessage',
@@ -101,8 +126,13 @@ const Welcome = () => {
           </a>
         </Typography.Text>
         <CodePreview>yarn add @ant-design/pro-layout</CodePreview>
+      </Card> */}
+      <Card>
+       <PieChart></PieChart>       
       </Card>
-      <PieChart></PieChart>
+      <Card>
+<LineChart></LineChart>
+      </Card>
     </PageContainer>
   );
 };
