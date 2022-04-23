@@ -2,7 +2,7 @@
   <v-card class="overflow-hidden">
     <v-app-bar
       absolute
-      color="#6A76AB"
+      color="indigo lighten-2"
       dark
     >
       <v-toolbar-title>Do I have COVID-19?</v-toolbar-title>
