@@ -1,12 +1,19 @@
 <template>
-      <div :class="{'voice_wrap':true,'large':duration>40,'middle':duration>20&&duration<41,'small':duration<21}">
+  <div
+    :class="{
+      voice_wrap: true,
+      large: duration > 40,
+      middle: duration > 20 && duration < 41,
+      small: duration < 21,
+    }"
+  >
     <div>
       <v-icon v-if="isPlaying" @click="playVoice"> mdi-pause </v-icon>
       <v-icon v-if="!isPlaying" @click="playVoice"> mdi-play </v-icon>
     </div>
     <div class="voice_time_line" id="waveform" ref="waveform" />
     <div class="voice-dialog-time">
-      <p>{{ time }} </p>
+      <p>{{ time }}</p>
     </div>
   </div>
 </template>
@@ -24,7 +31,7 @@ export default {
     },
     url: {
       type: String,
-      default: require("../assets/test.mp3"),
+      default: require("D:/audio/test.mp3"),
     },
     toStopVoice: {
       type: Boolean,
@@ -138,45 +145,45 @@ export default {
   color: #fff;
   margin-left: 8px;
 }
-.voice_wrap{
-    background: #94BDEC;
-    border-radius: 18px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    padding: 0 12px;
-    box-sizing: border-box;
-    img{
-      width: 24px;
-      height: 24px;
-      margin-right: 4px;
-    }
-    .voice_time_line{
-      height: 24px;
-    }
-    .duration{
-      font-size: 16px;
-      line-height: 22px;
-      color: #fff;
-      margin-left: 8px;
-    }
+.voice_wrap {
+  background: #94bdec;
+  border-radius: 18px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  box-sizing: border-box;
+  img {
+    width: 24px;
+    height: 24px;
+    margin-right: 4px;
   }
-  .voice_wrap.large{
-    width: 262px;
-    .voice_time_line{
-      width: 177px;
-    }
+  .voice_time_line {
+    height: 24px;
   }
-  .voice_wrap.middle{
-    width: 203px;
-    .voice_time_line{
-      width: 118px;
-    }
+  .duration {
+    font-size: 16px;
+    line-height: 22px;
+    color: #fff;
+    margin-left: 8px;
   }
-  .voice_wrap.small{
-    width: 144px;
-    .voice_time_line{
-      width: 59px;
-    }
+}
+.voice_wrap.large {
+  width: 262px;
+  .voice_time_line {
+    width: 177px;
   }
+}
+.voice_wrap.middle {
+  width: 203px;
+  .voice_time_line {
+    width: 118px;
+  }
+}
+.voice_wrap.small {
+  width: 144px;
+  .voice_time_line {
+    width: 59px;
+  }
+}
 </style>

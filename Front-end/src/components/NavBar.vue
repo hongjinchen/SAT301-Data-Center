@@ -21,14 +21,14 @@ export default {
   data() {
     return {
       tabs: [
-        { id: 1, name: "Statistics", route: `/helloWorld` },
+        { id: 1, name: "Statistics", route: `/` },
         { id: 2, name: "Database", route: `/userDatabase` },
       ],
     };
   },
   methods: {
     gotoHome() {
-      this.$router.push({ path: "/helloWorld" });
+      this.$router.push({ path: "/" });
     },
     gotoDatabase() {
       this.$router.push({ path: "/userDatabase" });

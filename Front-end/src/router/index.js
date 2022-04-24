@@ -3,10 +3,16 @@ import VueRouter from 'vue-router'
 import HelloWorld  from '../components/HelloWorld.vue';
 import UserDatabase  from '../components/UserDatabase.vue';
 import SonogramPage from "../components/SonogramPage.vue"
-
+import LoginPage from "../components/LoginPage.vue"
 Vue.use(VueRouter)
 
 const routes = [
+  
+  {
+    path: '/LoginPage',
+    name: LoginPage,
+    component: LoginPage,
+  },
   {
     path: '/',
     name: HelloWorld,
