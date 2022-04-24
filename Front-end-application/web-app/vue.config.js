@@ -4,7 +4,7 @@ module.exports = defineConfig({
     'vuetify'
   ],
   pwa: {
-    name: 'test',
+    name: 'SAT301 Detection of New Coronary Pneumonia Disease',
     themeColor: '#4c89fe',
     msTileColor: '#4c89fe',
     manifestOptions: {
