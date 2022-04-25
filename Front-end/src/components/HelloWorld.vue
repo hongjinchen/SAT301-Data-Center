@@ -1,5 +1,5 @@
 <template>
-  <v-app style="margin-top:60px" id="inspire">
+  <v-app style="margin-top: 60px" id="inspire">
     <v-card style="margin: 60px 60px 60px 60px" color="grey lighten-3">
       <v-container>
         <v-row>
@@ -57,7 +57,7 @@ export default {
     ChartList: [
       "Percentage of detection results",
       "Number of detection in China",
-      "Number of detection for a single user",
+      // "Number of detection for a single user",
     ],
     index: 0,
   }),
@@ -106,7 +106,7 @@ export default {
       } else if (index == 1) {
         this.option = {
           title: {
-            text: "Number of users per day",
+            text: "Number of decetion per region",
           },
           xAxis: {
             type: "category",
@@ -122,44 +122,45 @@ export default {
             },
           ],
         };
-      } else if (index == 2) {
-        this.option = {
-          title: {
-            text: "The number of detection for a single user",
-            subtext: "Fake Data",
-            left: "center",
-          },
-          tooltip: {
-            trigger: "item",
-          },
-          legend: {
-            orient: "vertical",
-            left: "left",
-          },
-          series: [
-            {
-              name: "User number",
-              type: "pie",
-              radius: "50%",
-              data: [
-                { value: 1048, name: "1" },
-                { value: 735, name: "2" },
-                { value: 580, name: "3" },
-                { value: 484, name: "4" },
-                { value: 300, name: "5" },
-                { value: 300, name: "over 5" },
-              ],
-              emphasis: {
-                itemStyle: {
-                  shadowBlur: 10,
-                  shadowOffsetX: 0,
-                  shadowColor: "rgba(0, 0, 0, 0.5)",
-                },
-              },
-            },
-          ],
-        };
       }
+      // else if (index == 2) {
+      //   this.option = {
+      //     title: {
+      //       text: "The number of detection for a single user",
+      //       subtext: "Fake Data",
+      //       left: "center",
+      //     },
+      //     tooltip: {
+      //       trigger: "item",
+      //     },
+      //     legend: {
+      //       orient: "vertical",
+      //       left: "left",
+      //     },
+      //     series: [
+      //       {
+      //         name: "User number",
+      //         type: "pie",
+      //         radius: "50%",
+      //         data: [
+      //           { value: 1048, name: "1" },
+      //           { value: 735, name: "2" },
+      //           { value: 580, name: "3" },
+      //           { value: 484, name: "4" },
+      //           { value: 300, name: "5" },
+      //           { value: 300, name: "over 5" },
+      //         ],
+      //         emphasis: {
+      //           itemStyle: {
+      //             shadowBlur: 10,
+      //             shadowOffsetX: 0,
+      //             shadowColor: "rgba(0, 0, 0, 0.5)",
+      //           },
+      //         },
+      //       },
+      //     ],
+      //   };
+      // }
       myChart.setOption(this.option);
     },
     Refresh() {
