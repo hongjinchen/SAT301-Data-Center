@@ -71,13 +71,21 @@
             <v-row>
               <v-col cols="9">
                 <v-file-input
-                  style="margin: 10px 10px 10px 30px;"
+                  style="margin: 10px 10px 10px 30px"
                   small-chips
                   truncate-length="15"
                 ></v-file-input>
               </v-col>
               <v-col cols="3">
-                <v-btn class="mx-2" style="margin-top: 25px" fab dark small color="indigo lighten-3" @click="uploadVideo">
+                <v-btn
+                  class="mx-2"
+                  style="margin-top: 25px"
+                  fab
+                  dark
+                  small
+                  color="indigo lighten-3"
+                  @click="uploadVideo"
+                >
                   <v-icon dark> mdi-upload </v-icon>
                 </v-btn>
               </v-col>
@@ -92,7 +100,7 @@
           <div
             style="text-align: center; display: flex; justify-content: center"
           >
-            <img style="margin-bottom:20px" src="../assets/coughing.svg" />
+            <img style="margin-bottom: 20px" src="../assets/coughing.svg" />
           </div>
         </v-card>
       </v-col>
@@ -113,6 +121,7 @@ export default {
       isPlay: false,
       tipMsg: "录音",
       audio: "",
+      isupload: false,
       recorder: new Record(),
     };
   },
@@ -182,6 +191,12 @@ export default {
     // 上传录音
     uploadVideo() {
       console.log(this.audio);
+      this.isupload = !this.isupload;
+      if (this.isupload) {
+        alert("UPLOAD COMPLETE!");
+        // this.$router.push({ path: "/multiple_gift/" + this.$route.params.post_id });
+        this.$router.push({ path: "/ResultPage" });
+      }
     },
   },
 };
@@ -190,7 +205,7 @@ export default {
 .record {
   margin: 30px;
   padding-top: 30px;
-  max-width:960px;
+  max-width: 960px;
   min-height: 630px;
 }
 .uploadVideo {
