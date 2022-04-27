@@ -51,6 +51,11 @@
 
 <script>
 import BottomFooter from "./BottomFooter";
+import {
+  getPercentageDetectionResults,
+  getNumberDetectionByRegion,
+} from "@/router/api.js";
+
 export default {
   data: () => ({
     option: {},
@@ -165,6 +170,24 @@ export default {
     },
     Refresh() {
       location.reload();
+    },
+    getStatistics() {
+      getPercentageDetectionResults()
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch(() => {
+          alert("Failed to get Percentage of Detection Results");
+          console.log("Failed to get Percentage of Detection Results");
+        });
+      getNumberDetectionByRegion()
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch(() => {
+          alert("Failed to get Number of Detection By Region");
+          console.log("Failed to get Number of Detection By Region");
+        });
     },
   },
 };

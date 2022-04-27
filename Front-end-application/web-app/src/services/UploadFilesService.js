@@ -8,7 +8,7 @@ class UploadFilesService {
     for (var [a, b] of formData.entries()) {
         console.log(a, b, '--------------');
       }
-    return http.post("/records", formData, {
+    return http.post("/Post/query/addQuery", formData, {
       headers: {
         "Content-Type": "multipart/form-data"
       },

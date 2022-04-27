@@ -27,7 +27,7 @@
         </template>
       </v-data-table>
     </v-card>
-    <div v-else style="margin-bottom:260px">
+    <div v-else style="margin-bottom: 260px">
       <LoginPage></LoginPage>
     </div>
     <BottomFooter> </BottomFooter>
@@ -37,6 +37,7 @@
 import BottomFooter from "./BottomFooter";
 import SonogramPage from "./SonogramPage";
 import LoginPage from "./LoginPage";
+import { getAll } from "@/router/api.js";
 export default {
   data() {
     return {
@@ -119,7 +120,22 @@ export default {
   components: {
     BottomFooter,
     SonogramPage,
-    LoginPage
+    LoginPage,
+  },
+  created(){
+    this.getUserInformation()
+  },
+  methods: {
+    getUserInformation() {
+      getAll()
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch(() => {
+          alert("Failed to get  user information, please try again");
+          console.log("获取用户信息失败");
+        });
+    },
   },
 };
 </script>

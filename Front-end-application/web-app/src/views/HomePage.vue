@@ -68,18 +68,6 @@
         <v-card color="blue-grey lighten-5" elevation="1" class="uploadVideo">
           <div class="title">Uploading my record</div>
           <v-card class="input">
-            <!-- <v-row>
-              <v-col cols="9">
-                <v-file-input
-                  style="margin: 10px 10px 10px 30px"
-                  small-chips
-                  truncate-length="15"
-                ></v-file-input>
-              </v-col>
-              <v-col cols="3">
-
-              </v-col>
-            </v-row> -->
             <UploadFiles></UploadFiles>
           </v-card>
           <v-divider></v-divider>
@@ -102,6 +90,8 @@
 <script>
 import Record from "../utils/record-sdk";
 import UploadFiles from "../components/UploadFiles";
+import UploadService from "../services/UploadFilesService";
+
 export default {
   name: "HomePage",
   data() {
@@ -192,11 +182,31 @@ export default {
     uploadVideo() {
       console.log(this.audio);
       this.isupload = !this.isupload;
-      if (this.isupload) {
-        alert("UPLOAD COMPLETE!");
-        // this.$router.push({ path: "/multiple_gift/" + this.$route.params.post_id });
-        this.$router.push({ path: "/ResultPage" });
-      }
+      // if (this.isupload) {
+      //   alert("UPLOAD COMPLETE!");
+      //   // this.$router.push({ path: "/multiple_gift/" + this.$route.params.post_id });
+      //   this.$router.push({ path: "/ResultPage" });
+      // }
+      // if (!this.currentFile) {
+      //   this.message = "Please select a file!";
+      //   return;
+      // }
+      this.message = "";
+      UploadService.upload(this.audio, (event) => {
+        this.progress = Math.round((100 * event.loaded) / event.total);
+      })
+        .then((response) => {
+          this.message = response.data.message;
+        })
+        .then((files) => {
+          this.fileInfos = files.data;
+          this.$router.push({ path: "/ResultPage" });
+        })
+        .catch(() => {
+          this.progress = 0;
+          this.message = "Could not upload the file!";
+          this.currentFile = undefined;
+        });
     },
   },
 };

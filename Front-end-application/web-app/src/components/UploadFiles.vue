@@ -81,6 +81,7 @@ export default {
         })
         .then((files) => {
           this.fileInfos = files.data;
+          this.$router.push({ path: "/ResultPage" });
         })
         .catch(() => {
           this.progress = 0;
