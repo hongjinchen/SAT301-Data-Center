@@ -1,0 +1,10 @@
+syntax = "proto3";
+package test;
+
+message msg{
+    string m = 1;
+}
+
+service speak{
+    rpc greeting (msg) returns (msg);
+}

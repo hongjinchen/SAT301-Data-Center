@@ -1,0 +1,8 @@
+{
+    "port": "8080",
+    "audioDirectory": "store",
+    "db": {
+        "mongoURL": "mongodb://chj:hongchenjin@aruix.net:27017/?authSource=admin&readPreference=primary&ssl=false",
+        "dbName": "backend"
+    }
+}
