@@ -68,7 +68,7 @@
         <v-card color="blue-grey lighten-5" elevation="1" class="uploadVideo">
           <div class="title">Uploading my record</div>
           <v-card class="input">
-            <v-row>
+            <!-- <v-row>
               <v-col cols="9">
                 <v-file-input
                   style="margin: 10px 10px 10px 30px"
@@ -77,19 +77,10 @@
                 ></v-file-input>
               </v-col>
               <v-col cols="3">
-                <v-btn
-                  class="mx-2"
-                  style="margin-top: 25px"
-                  fab
-                  dark
-                  small
-                  color="indigo lighten-3"
-                  @click="uploadVideo"
-                >
-                  <v-icon dark> mdi-upload </v-icon>
-                </v-btn>
+
               </v-col>
-            </v-row>
+            </v-row> -->
+            <UploadFiles></UploadFiles>
           </v-card>
           <v-divider></v-divider>
           <div class="word">
@@ -110,6 +101,7 @@
 
 <script>
 import Record from "../utils/record-sdk";
+import UploadFiles from "../components/UploadFiles";
 export default {
   name: "HomePage",
   data() {
@@ -125,7 +117,10 @@ export default {
       recorder: new Record(),
     };
   },
-  components: {},
+  components: { UploadFiles },
+  created() {
+    this.getLocation();
+  },
   methods: {
     recordVoice() {},
     // 开始录音
@@ -151,7 +146,12 @@ export default {
         },
       });
     },
-
+    getLocation() {
+     this.$store.state.cityCode = returnCitySN.cname;
+      console.log("OK!");
+      console.log(this.$store.state.cityCode);
+      // console.log('<hr><br><h1> 老铁位置：'+JSON.stringify(returnCitySN)+'</h1>')
+    },
     // 结束录音
     onEndVoice() {
       this.isFinished = true;

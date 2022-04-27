@@ -21,7 +21,7 @@
         class="indigo lighten-3 py-4 text-center white--text"
         cols="12"
       >
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+        {{ new Date().getFullYear() }} — <strong>Application for Detection of New Coronary Pneumonia Disease by Breath Sound</strong>
       </v-col>
     </v-row>
   </v-footer>
