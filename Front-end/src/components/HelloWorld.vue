@@ -59,6 +59,9 @@ import {
 export default {
   data: () => ({
     option: {},
+    piehChartData: [],
+    linechartCatgory: [],
+    linechartData: [],
     ChartList: [
       "Percentage of detection results",
       "Number of detection in China",
@@ -70,8 +73,12 @@ export default {
     BottomFooter,
   },
   mounted() {
+    this.getStatistics();
+  },
+  created() {
     this.ChangeChart(this.index);
   },
+
   methods: {
     ChangeChart(index) {
       let myChart = this.$echarts.init(document.getElementById("main"));
@@ -79,7 +86,6 @@ export default {
         this.option = {
           title: {
             text: "Percentage of detection results",
-            subtext: "Fake Data",
             left: "center",
           },
           tooltip: {
@@ -94,10 +100,7 @@ export default {
               name: "Access From",
               type: "pie",
               radius: "50%",
-              data: [
-                { value: 484, name: "True" },
-                { value: 300, name: "False" },
-              ],
+              data: this.piehChartData,
               emphasis: {
                 itemStyle: {
                   shadowBlur: 10,
@@ -115,57 +118,19 @@ export default {
           },
           xAxis: {
             type: "category",
-            data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            data: this.linechartCatgory,
           },
           yAxis: {
             type: "value",
           },
           series: [
             {
-              data: [150, 230, 224, 218, 135, 147, 260],
+              data: this.linechartData,
               type: "line",
             },
           ],
         };
       }
-      // else if (index == 2) {
-      //   this.option = {
-      //     title: {
-      //       text: "The number of detection for a single user",
-      //       subtext: "Fake Data",
-      //       left: "center",
-      //     },
-      //     tooltip: {
-      //       trigger: "item",
-      //     },
-      //     legend: {
-      //       orient: "vertical",
-      //       left: "left",
-      //     },
-      //     series: [
-      //       {
-      //         name: "User number",
-      //         type: "pie",
-      //         radius: "50%",
-      //         data: [
-      //           { value: 1048, name: "1" },
-      //           { value: 735, name: "2" },
-      //           { value: 580, name: "3" },
-      //           { value: 484, name: "4" },
-      //           { value: 300, name: "5" },
-      //           { value: 300, name: "over 5" },
-      //         ],
-      //         emphasis: {
-      //           itemStyle: {
-      //             shadowBlur: 10,
-      //             shadowOffsetX: 0,
-      //             shadowColor: "rgba(0, 0, 0, 0.5)",
-      //           },
-      //         },
-      //       },
-      //     ],
-      //   };
-      // }
       myChart.setOption(this.option);
     },
     Refresh() {
@@ -174,7 +139,13 @@ export default {
     getStatistics() {
       getPercentageDetectionResults()
         .then((res) => {
-          console.log(res.data);
+          // data: {TrueNumber: 0, FalseNumber: 1}
+          this.piehChartData = [
+            { value: res.data.data.TrueNumber, name: "True" },
+            { value: res.data.data.FalseNumber, name: "False" },
+          ];
+          console.log(this.res.data.data);
+          console.log("getPercentageDetectionResults");
         })
         .catch(() => {
           alert("Failed to get Percentage of Detection Results");
@@ -182,7 +153,11 @@ export default {
         });
       getNumberDetectionByRegion()
         .then((res) => {
-          console.log(res.data);
+          for (var item in res.data.data) {
+            this.linechartCatgory.push(item);
+            this.linechartData.push(res.data.data[item]);
+          }
+          console.log(res.data.data);
         })
         .catch(() => {
           alert("Failed to get Number of Detection By Region");

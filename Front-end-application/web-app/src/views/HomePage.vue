@@ -137,7 +137,7 @@ export default {
       });
     },
     getLocation() {
-     this.$store.state.cityCode = returnCitySN.cname;
+      this.$store.state.cityCode = returnCitySN.cname;
       console.log("OK!");
       console.log(this.$store.state.cityCode);
       // console.log('<hr><br><h1> 老铁位置：'+JSON.stringify(returnCitySN)+'</h1>')
@@ -182,15 +182,7 @@ export default {
     uploadVideo() {
       console.log(this.audio);
       this.isupload = !this.isupload;
-      // if (this.isupload) {
-      //   alert("UPLOAD COMPLETE!");
-      //   // this.$router.push({ path: "/multiple_gift/" + this.$route.params.post_id });
-      //   this.$router.push({ path: "/ResultPage" });
-      // }
-      // if (!this.currentFile) {
-      //   this.message = "Please select a file!";
-      //   return;
-      // }
+      this.$router.push({ path: "/ResultPage" });
       this.message = "";
       UploadService.upload(this.audio, (event) => {
         this.progress = Math.round((100 * event.loaded) / event.total);

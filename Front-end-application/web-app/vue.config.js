@@ -3,6 +3,9 @@ module.exports = defineConfig({
   transpileDependencies: [
     'vuetify'
   ],
+  devServer: {
+    proxy:'http://42.192.21.119:8080'
+  },
   pwa: {
     name: 'SAT301 Detection of New Coronary Pneumonia Disease',
     themeColor: '#4c89fe',

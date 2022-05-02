@@ -1,6 +1,6 @@
 import axios from "axios";
 export default axios.create({
-  baseURL: "http://aruiplex.com:8080",
+  baseURL: "42.192.21.119:8080/",
   headers: {
     "Content-type": "application/json"
   }
