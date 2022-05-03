@@ -5,7 +5,6 @@
       <div style="margin: 30px 120px 30px 120px">
         <v-text-field
           label="User Name"
-          :rules="rules"
           v-model="username"
           hide-details="auto"
         ></v-text-field>

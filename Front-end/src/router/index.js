@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HelloWorld  from '../components/HelloWorld.vue';
+import HelloWorld  from '../components/StatisticsPage.vue';
 import UserDatabase  from '../components/UserDatabase.vue';
 import SonogramPage from "../components/SonogramPage.vue"
 import LoginPage from "../components/LoginPage.vue"
