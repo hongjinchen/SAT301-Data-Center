@@ -50,7 +50,7 @@
   </div>
 </template>
 <script>
-import UploadService from "../services/UploadFilesService";
+// import UploadService from "../services/UploadFilesService";
 export default {
   name: "upload-files",
   data() {
@@ -72,22 +72,25 @@ export default {
         return;
       }
       this.message = "";
-      UploadService.upload(this.currentFile, (event) => {
-        this.progress = Math.round((100 * event.loaded) / event.total);
-      })
-        .then((response) => {
-          this.message = response.data.message;
-          //   return UploadService.getFiles();
-        })
-        .then((files) => {
-          this.fileInfos = files.data;
-          this.$router.push({ path: "/ResultPage" });
-        })
-        .catch(() => {
-          this.progress = 0;
-          this.message = "Could not upload the file!";
-          this.currentFile = undefined;
-        });
+      setTimeout(() => console.log(3), 3000);
+
+      this.$router.push({ path: "/ResultPage" });
+      // UploadService.upload(this.currentFile, (event) => {
+      //   this.progress = Math.round((100 * event.loaded) / event.total);
+      // })
+      //   .then((response) => {
+      //     this.message = response.data.message;
+      //     //   return UploadService.getFiles();
+      //   })
+      //   .then((files) => {
+      //     this.fileInfos = files.data;
+      //     this.$router.push({ path: "/ResultPage" });
+      //   })
+      //   .catch(() => {
+      //     this.progress = 0;
+      //     this.message = "Could not upload the file!";
+      //     this.currentFile = undefined;
+      //   });
     },
   },
   mounted() {

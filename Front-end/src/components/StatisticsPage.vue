@@ -73,10 +73,11 @@ export default {
     BottomFooter,
   },
   mounted() {
-    this.getStatistics();
+    // this.getStatistics();
+    this.ChangeChart(this.index);
   },
   created() {
-    this.ChangeChart(this.index);
+    // this.ChangeChart(this.index);
   },
 
   methods: {
@@ -100,7 +101,11 @@ export default {
               name: "Access From",
               type: "pie",
               radius: "50%",
-              data: this.piehChartData,
+              // data: this.piehChartData,
+              data:[
+                { value: 3, name: "True" },
+                { value: 12, name: "False" },
+              ],
               emphasis: {
                 itemStyle: {
                   shadowBlur: 10,
@@ -118,14 +123,16 @@ export default {
           },
           xAxis: {
             type: "category",
-            data: this.linechartCatgory,
+            // data: this.linechartCatgory,
+             data: ["重庆市重庆市", "广东省广州市", "湖南省衡阳市", "河南省郑州市", "江苏省苏州市"],
           },
           yAxis: {
             type: "value",
           },
           series: [
             {
-              data: this.linechartData,
+              // data: this.linechartData,
+              data:[3,5,2,1,4],
               type: "line",
             },
           ],
