@@ -91,7 +91,6 @@
 import Record from "../utils/record-sdk";
 import UploadFiles from "../components/UploadFiles";
 import UploadService from "../services/UploadFilesService";
-
 export default {
   name: "HomePage",
   data() {
@@ -140,7 +139,7 @@ export default {
       this.$store.state.cityCode = returnCitySN.cname;
       console.log("OK!");
       console.log(this.$store.state.cityCode);
-      // console.log('<hr><br><h1> 老铁位置：'+JSON.stringify(returnCitySN)+'</h1>')
+      // console.log('<hr><br><h1> 位置：'+JSON.stringify(returnCitySN)+'</h1>')
     },
     // 结束录音
     onEndVoice() {
@@ -178,27 +177,71 @@ export default {
       this.recorder.clear(this.audio);
     },
 
+    // 判断文件类型
+    fileType(filePath) {
+      //获取最后一个.的位置
+      var index = filePath.lastIndexOf(".");
+      //获取后缀
+      var ext = filePath.substr(index + 1);
+
+      //判断是否是视频类型
+      if (
+        ["mp4", "avi", "mov", "rmvb", "rm", "flv", "3gp"].indexOf(
+          ext.toLowerCase()
+        ) != -1
+      ) {
+        return "video";
+      }
+      //判断是否是图片类型
+      if (
+        [
+          "png",
+          "jpg",
+          "jpeg",
+          "bmp",
+          "gif",
+          "webp",
+          "psd",
+          "svg",
+          "tiff",
+        ].indexOf(ext.toLowerCase()) != -1
+      ) {
+        return "image";
+      }
+      //判断是否是音频类型
+      if (
+        ["cda", "wav", "mp3", "wmv", "flac", "aac"].indexOf(
+          ext.toLowerCase()
+        ) != -1
+      ) {
+        return "audio";
+      }
+      return "otherType";
+    },
     // 上传录音
     uploadVideo() {
-      console.log(this.audio);
-      this.isupload = !this.isupload;
-      this.$router.push({ path: "/ResultPage" });
-      this.message = "";
-      UploadService.upload(this.audio, (event) => {
-        this.progress = Math.round((100 * event.loaded) / event.total);
-      })
-        .then((response) => {
-          this.message = response.data.message;
+      if (this.fileType(this.audio) == "video") {
+        UploadService.upload(this.audio, (event) => {
+          this.progress = Math.round((100 * event.loaded) / event.total);
         })
-        .then((files) => {
-          this.fileInfos = files.data;
-          this.$router.push({ path: "/ResultPage" });
-        })
-        .catch(() => {
-          this.progress = 0;
-          this.message = "Could not upload the file!";
-          this.currentFile = undefined;
-        });
+          .then((response) => {
+            this.message = response.data.message;
+          })
+          .then((files) => {
+            this.fileInfos = files.data;
+            console.log(this.audio);
+            this.isupload = !this.isupload;
+            this.$router.push({ path: "/ResultPage" });
+            this.message = "";
+          })
+          .catch(() => {
+            this.progress = 0;
+            this.message = "Could not upload the file!";
+            this.currentFile = undefined;
+          });
+      }else{
+        alert("Please upload a video file!")
+      }
     },
   },
 };

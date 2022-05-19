@@ -77,7 +77,7 @@ export default {
     this.ChangeChart(this.index);
   },
   created() {
-    // this.ChangeChart(this.index);
+    this.getStatistics();
   },
 
   methods: {
@@ -101,11 +101,11 @@ export default {
               name: "Access From",
               type: "pie",
               radius: "50%",
-              // data: this.piehChartData,
-              data:[
-                { value: 3, name: "True" },
-                { value: 12, name: "False" },
-              ],
+              data: this.piehChartData,
+              // data: [
+              //   { value: 3, name: "True" },
+              //   { value: 12, name: "False" },
+              // ],
               emphasis: {
                 itemStyle: {
                   shadowBlur: 10,
@@ -123,16 +123,15 @@ export default {
           },
           xAxis: {
             type: "category",
-            // data: this.linechartCatgory,
-             data: ["重庆市重庆市", "广东省广州市", "湖南省衡阳市", "河南省郑州市", "江苏省苏州市"],
+            data: this.linechartCatgory,
           },
           yAxis: {
             type: "value",
           },
           series: [
             {
-              // data: this.linechartData,
-              data:[3,5,2,1,4],
+              data: this.linechartData,
+              // data: [3, 5, 2, 1, 4],
               type: "line",
             },
           ],
@@ -151,12 +150,10 @@ export default {
             { value: res.data.data.TrueNumber, name: "True" },
             { value: res.data.data.FalseNumber, name: "False" },
           ];
-          console.log(this.res.data.data);
-          console.log("getPercentageDetectionResults");
+          console.log( this.piehChartData);
         })
         .catch(() => {
           alert("Failed to get Percentage of Detection Results");
-          console.log("Failed to get Percentage of Detection Results");
         });
       getNumberDetectionByRegion()
         .then((res) => {
@@ -164,11 +161,10 @@ export default {
             this.linechartCatgory.push(item);
             this.linechartData.push(res.data.data[item]);
           }
-          console.log(res.data.data);
+          console.log( this.linechartData);
         })
         .catch(() => {
           alert("Failed to get Number of Detection By Region");
-          console.log("Failed to get Number of Detection By Region");
         });
     },
   },

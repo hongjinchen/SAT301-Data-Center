@@ -6,10 +6,9 @@ import vuetify from './plugins/vuetify'
 import axios from 'axios'
 import './registerServiceWorker'
 import GlobalVariable from './GlobalVariable'
-
+axios.defaults.baseURL = "http://42.192.21.119:8080"
 axios.defaults.withCredentials = true
 Vue.prototype.$axios = axios //全局注册，使用方法为:this.$axios
-// Vue.prototype.qs = qs //全局注册，使用方法为:this.qs
 Vue.prototype.GlobalVariable = GlobalVariable //挂载到Vue实例上面
 Vue.config.productionTip = false
 

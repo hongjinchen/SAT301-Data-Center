@@ -10,13 +10,10 @@ class UploadFilesService {
       }
     return http.post("/Post/query/addQuery", formData, {
       headers: {
-        "Content-Type": "multipart/form-data"
+        "Content-Type": "application/x-www-form-urlencoded"
       },
       onUploadProgress
     });
-  }
-  getFiles() {
-    return http.get("/records");
   }
 }
 export default new UploadFilesService();
