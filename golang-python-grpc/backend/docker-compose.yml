@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodata:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: chj
+      MONGO_INITDB_ROOT_PASSWORD: hongchenjin
+# MongoURL string = "mongodb://chj:hongchenjin@172.19.0.1:27017/?authSource=admin&readPreference=primary&ssl=false"
+    
+
+  golang-devenv:
+    image: golang:1.18
+    restart: always
+    command: bash -c "while sleep 1000000; do echo "Hi"; done"
+    ports:
+      - 8080:8080
+    volumes:
+      - $PWD:/chj
+
+volumes:
+  mongodata:

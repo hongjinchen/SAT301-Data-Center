@@ -15,7 +15,6 @@ func Init() {
 }
 
 func main() {
-
 	log.Println("Starting the application")
 	Init()
 	// wait for the database to be ready, then go on

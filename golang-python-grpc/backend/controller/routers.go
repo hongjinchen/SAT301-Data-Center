@@ -24,7 +24,6 @@ func index(w http.ResponseWriter, r *http.Request) {
 func Router() *mux.Router {
 	router := mux.NewRouter()
 	// add middleware
-	router.Use(loggingMiddleware)
 	router.Use(crossOrigin)
 	// index page
 	router.HandleFunc("/", index).Methods("GET")
@@ -32,10 +31,8 @@ func Router() *mux.Router {
 	router.HandleFunc("/ping", greet).Methods("GET")
 	// store static files
 	router.PathPrefix("/store/").Handler(http.StripPrefix("/store/", http.FileServer(http.Dir(config.Config.AudioDirectory)))).Methods("GET")
-
-	// UserRouter(router)
 	RecordRouter(router)
-
+	// router.Use(mux.CORSMethodMiddleware(router))
 	log.Println("Router created")
 	return router
 }
