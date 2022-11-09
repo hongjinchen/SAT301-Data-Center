@@ -1,6 +1,3 @@
-# Hongjin Chen FYP  
-
-
 ## Requirements
 
 - Python is used to analysis audio data.
